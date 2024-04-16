@@ -33,21 +33,36 @@
 								</header>
 
 							<!-- Banner -->
-								<section id="banner">
+								<section>
 									<div class="content">
 										<header>
-											<h1>Hi, I’m Editorial<br />
-											by HTML5 UP</h1>
-											<p>A free and fully responsive site template</p>
+											<h2>Level 3 - How do we make our model better?</h2> 
 										</header>
-										<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
-										<ul class="actions">
-											<li><a href="#" class="button big">Learn More</a></li>
-										</ul>
+										<div class="box">
+											<p>Ok, so you've made it to the boss level. You now understand that for a supervised modeling pipeline, you need something to predict (the target), something to predict it with (features), and something to use to predict (a model). And, we covered the importance of splitting our data to make sure we can understand real life performance, and start to compare performance between models. But, if we simply stop there, we'd be staring at a few different models, maybe can pick the best one, but have no way of making any of them better! And without a chance for and guidance towards improvement, our models might get de-motivated. So let's add a bit to our pipeline:
+											</p>
+											<p><a href="#" class="image"><img src="images/modeling_pipeline_3.png" alt="" /></a>
+											</p>
+											<p>Buckle up, because we're going to go fast. First, we can consider our <strong>target</strong> in what we call, target practice. Just kidding, it's probably better called target processing. There are a number of things we could do with our target to get ourselves a better model. We could <i>get more data</i>, especially data that is highly relevant to the prediction task at hand, or data that is novel, or data that is generally hard to predict. If we're trying to predict the final exam scores of Berkeley students in a data science class, we could get data from other final exams from comparable universities in their data science classes. We could also <i>make sure that our data is accurate</i>. Perhaps, in an effort to soften the blow, previous years' final exam scores were curved at different rates. Normalizing those curves, or using pre-curve scores would be a better way to get an accurate model. Again, these considerations uncover and rely on the <i>data generating process</i> behind our target, and can be broadly called <strong>target processing</strong>.
+											</p>
+											<p>Second, and you guessed it&#8212if we should pay attention to the target, we should pay attention to the features&#8212we can do some <strong>feature engineering</strong>. What this means is that we can create new features altogether from the data that we have. Or, we can do some transformations on the features we already have. Or, we can drop some unnecessary or highly similar features (i.e. feature selection) which actually in many cases improves our model performance. Or, we may have to normalize or features or remove outliers. Often, the biggest improvements here come from including orthogonal, or net new, sources of data in your features, especially those that are predictive, correlationally or causally, of the target to some degree. 
+											</p>
+											<p>Third, we can <strong>modify the model itself</strong>. We can do this by choosing more (or less) complex models. We can modify the free paramaters of each model type (called hyperparameters), which will affect how they train. We can combine a suite of models together (ensemble), or we can stack them on top of each other in layers (stacked). We can use some models to produce intermediate features, like using a computer vision model to produce embeddings of a picture, and use those intermediate features together with other tabular features in a downstream model. The possibilities are endless.
+											</p>
+											<p>And space (and time to write this) would not permit me to write about cross-validation, alternate metrics, seed hacking, and more. But I have listed the strategies that, in practice, tend to have the largest impact on model performance.
+											</p>
+											<p>So where does that leave us? It leaves us with something like this:
+											</p>
+											<p><a href="#" class="image"><img src="images/modeling_pipeline_4.png" alt="" /></a>
+											</p>
+											<p>And once you transform this into a set of classes with inheritance, attributes, methods, and parameters, package it up and publish it, then you have an extensible, reusable pipeline that you can use to train multiple models in a rapid fashion. And there is your end-to-end supervised modeling pipeline!
+											</p>
+										</div>
+										<div class="box">
+											<p>Sorry, no code for this section because I ran out of time, but hopefully we'll be able to play around with some of these techniques in our workshop!
+											</p>
+										</div>
 									</div>
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
 								</section>
 
 							<!-- Section -->
@@ -159,21 +174,24 @@
 								</section>
 
 							<!-- Menu -->
-								<section>
-									<div class="content">
-										<header>
-											<h2>Level 3 - How do we make our model better?</h2> 
-										</header>
-										<div class="box">
-											<p>Insert basic diagram here.
-											</p>
-										</div>
-										<div class="box">
-											<p>Label sets, noise, preprocessing; Feature engineering; numerical, categorical, normalization. Hyperparameter tuning. Deployment?
-											</p>
-										</div>
-									</div>
-								</section>
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Home</a></li>
+										<li><a href="about.html">About</a></li>
+										<li>
+											<span class="opener">An End to End Supervised Modeling Pipeline</span>
+											<ul>
+												<li><a href="an_end_to_end_modeling_pipeline.html">Overview</a></li>
+												<li><a href="e2e_modeling_level1.html">Level 1</a></li>
+												<li><a href="e2e_modeling_level2.html">Level 2</a></li>
+												<li><a href="e2e_modeling_level3.html">Level 3</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
 
 							<!-- Section -->
 								<!-- <section>

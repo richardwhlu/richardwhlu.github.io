@@ -39,11 +39,63 @@
 											<h2>Level 1 - Let's train an ML model!</h2> 
 										</header>
 										<div class="box">
-											<p>Insert basic diagram here.
+											<p>Fundamentally, a machine learning model uses a machine to compute, mathematically or iteratively, some relationship between what goes into the ML model, and what comes out. You can imagine that the entire model training process can be presented by a few blocks like this: <a href="#" class="image"><img src="images/modeling_pipeline_0.png" alt="" /></a></p>
+											<p>But, to get us into the mindset of ML terminology, we're going to name the output here "target." A target can be anything you're trying to predict. Scores on the final exam, housing prices in the next 5 years, whether or not you'll have a conversation with another human today. Targets can be specific, like getting a 99/100+ on the final exam, or more broad, like getting an A. Whatever it might be, we'll refer to the the thing we'll be trying to predict as <strong>the target</strong>.
+											</p>
+											<p>On the other side, the input(s), or things going into your ML model, we'll call the "features." Continuing our exam example, features can be almost anything you can imagine&#8212the age of the student, the hours spent in class, the name of the professor, the picture used for the class on the website, the number of questions on the final exam, etc.&#8212but usually we'll think about what features might be predictive of our target. This brings us back to our data generating process. If we put on our detective caps, we can start to think about what caused our target to look the way it does? What causes one to get a high or low score on the final exam? In fact, it doesn't even have to <i>cause</i> a particular score, as long as it's related to it.
+											</p>
+											<p>Putting these pieces together, our simple modeling pipeline now looks like this: <a href="#" class="image"><img src="images/modeling_pipeline_1.png" alt="" /></a></p>   
+										</div>
+										<div class="box">
+											<p>Believe it or not, this is all we need to train an end-to-end supervised modeling pipeline. A lot of big words for just a few boxes, right? So let's try it out with some code. First, we'll generate a target&#8212the score we'll get out of 100 on our final exam.
+											<pre><code>import pandas as pd
+
+target = pd.DataFrame({
+	"final_exam_score": [
+		99,
+		100,
+		50,
+		75,
+		87,
+		100,
+		90,
+		28,
+		30,
+	]
+})</code></pre>
+											</p>
+											<p>Then, we'll create a few features...
+											<pre><code>import math
+import numpy as np
+
+features = pd.DataFrame({
+	"hours_spent_in_class": list(np.random.randint(0, 20, 9)),
+	"hours_spent_on_data_detectives": [
+		x - min(target["final_exam_score"].tolist()) + np.random.randint(0, 3, 1)[0]
+		for x in target["final_exam_score"].tolist()
+	],
+	"year_in_school": [
+		math.ceil(np.random.sample() * 4) for i in range(9)
+	]
+})</code></pre>
+											</p>
+											<p>And finally, we'll use a simple model to predict our target using our features:
+											<pre><code>from xgboost import XGBRegressor
+
+model = XGBRegressor(n_jobs=-1)
+model.fit(features, target)</code></pre>
+											</p>
+											<p>All done! And we can even use our model to predict what would happen on our final if we were a freshman who went to 100 hours of class and only did 1 hour of data detectives study...
+											<pre><code>model.predict(np.array([[100, 1, 1]]))[0]</code></pre>
+											</p>
+											<p>Womp womp... looks like we'd get a score of 28. Why don't we try again?
+											<pre><code>model.predict(np.array([[1, 100, 1]]))[0]</code></pre>
+											</p>
+											<p>Looks like that will get us a score of 99! Wonder where we should put those hours in &#128540;.
 											</p>
 										</div>
 										<div class="box">
-											<p>Labels, Features, Model...insert some code snippets to do this. Predict, and that's it
+											<p>So, in just a few lines, we've got a working end-to-end modeling pipeline. We can reuse the same template and code, just modifying a few pieces, to train more models, and predict how well we'll do on the final!
 											</p>
 										</div>
 									</div>
@@ -166,7 +218,7 @@
 										<li><a href="index.html">Home</a></li>
 										<li><a href="about.html">About</a></li>
 										<li>
-											<span class="opener">An End to End Modeling Pipeline</span>
+											<span class="opener">An End to End Supervised Modeling Pipeline</span>
 											<ul>
 												<li><a href="an_end_to_end_modeling_pipeline.html">Overview</a></li>
 												<li><a href="e2e_modeling_level1.html">Level 1</a></li>
